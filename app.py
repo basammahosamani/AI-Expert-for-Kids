@@ -88,3 +88,41 @@ if prompt:
 
     with st.chat_message("assistant"):
         st.write(response)
+        # -----------------------------
+# Edit Last User Message
+# -----------------------------
+if len(st.session_state.messages) >= 2:
+    last_user = None
+
+    # Find the last user message
+    for msg in reversed(st.session_state.messages):
+        if msg["role"] == "user":
+            last_user = msg["content"]
+            break
+
+    st.divider()
+    st.subheader("✏️ Edit Last Question")
+
+    edited_message = st.text_input(
+        "Modify your last question:",
+        value=last_user
+    )
+
+    if st.button("🔄 Regenerate Answer"):
+        # Remove last user + assistant messages
+        st.session_state.messages = st.session_state.messages[:-2]
+
+        # Add edited user message
+        st.session_state.messages.append(
+            {"role": "user", "content": edited_message}
+        )
+
+        # Generate new response
+        with st.spinner("🤖 Thinking..."):
+            new_response = chatbot(edited_message)
+
+        st.session_state.messages.append(
+            {"role": "assistant", "content": new_response}
+        )
+
+        st.rerun()
