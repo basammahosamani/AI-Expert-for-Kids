@@ -15,18 +15,16 @@ with st.sidebar:
     st.title("📚 AI Expert for Kids")
 
     st.write("### Ask questions about:")
-    st.write("✅ Science")
-    st.write("✅ Mathematics")
+    st.write("✅ Natural Language")
+    st.write("✅ Deep Learning")
     st.write("✅ Artificial Intelligence")
-    st.write("✅ Space")
-    st.write("✅ Animals")
+    st.write("✅ Machine Learning")
+    st.write("✅ LLM")
 
     if st.button("🗑️ Clear Chat"):
         st.session_state.messages = []
         st.rerun()
-# 3️⃣ Main Page
-st.title("🤖 AI Expert for Kids")
-st.write("Ask any AI question. The AI explains concepts for kids aged 5–15 years.")
+
 
 # -----------------------------
 # Initialize Groq LLM
