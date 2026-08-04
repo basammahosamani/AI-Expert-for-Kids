@@ -6,13 +6,13 @@ from langchain_core.messages import SystemMessage, HumanMessage
 # Page Configuration
 # -----------------------------
 st.set_page_config(
-    page_title="AI Expert for Kids",
+    page_title="AI Expert for Student",
     page_icon="🤖",
     layout="centered"
 )
 # 2️⃣ Add Sidebar HERE 👇
 with st.sidebar:
-    st.title("📚 AI Expert for Kids")
+    st.title("📚 AI Expert for Students")
 
     st.write("### Ask questions about:")
     st.write("✅ Natural Language")
