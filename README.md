@@ -1,1 +1,1 @@
-# AI-Expert-for-Kids
+# AI-Expert-for-Students
