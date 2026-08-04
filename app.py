@@ -1,11 +1,30 @@
 import streamlit as st
 from langchain_groq import ChatGroq
+from langchain_core.messages import SystemMessage, HumanMessage
 
 # -----------------------------
 # Page Configuration
 # -----------------------------
-st.set_page_config(page_title="🤖 AI Expert for Kids")
+st.set_page_config(
+    page_title="AI Expert for Kids",
+    page_icon="🤖",
+    layout="centered"
+)
+# 2️⃣ Add Sidebar HERE 👇
+with st.sidebar:
+    st.title("📚 AI Expert for Kids")
 
+    st.write("### Ask questions about:")
+    st.write("✅ Science")
+    st.write("✅ Mathematics")
+    st.write("✅ Artificial Intelligence")
+    st.write("✅ Space")
+    st.write("✅ Animals")
+
+    if st.button("🗑️ Clear Chat"):
+        st.session_state.messages = []
+        st.rerun()
+# 3️⃣ Main Page
 st.title("🤖 AI Expert for Kids")
 st.write("Ask any AI question. The AI explains concepts for kids aged 5–15 years.")
 
@@ -21,7 +40,18 @@ llm = ChatGroq(
 # Chatbot Function
 # -----------------------------
 def chatbot(message):
-    response = llm.invoke(message)
+    response = llm.invoke([
+        SystemMessage(
+            content="""
+You are an AI teacher for children aged 5–15.
+Explain everything in very simple language.
+Use examples and emojis.
+Keep answers friendly and easy to understand.
+"""
+        ),
+        HumanMessage(content=message)
+    ])
+
     return response.content
 
 # -----------------------------
